@@ -121,7 +121,6 @@ zstyle ':prezto:module:git:alias' skip 'yes'
 # zstyle ':prezto:module:prompt' theme 'sorin'
 #zstyle ':prezto:module:prompt' theme 'pure'
 zstyle ':prezto:module:prompt' theme 'jerome'
-# zstyle ':prezto:module:prompt' theme 'jerome'
 
 
 # Set the working directory prompt display length.
@@ -170,6 +169,9 @@ zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> integrate iterm and highlight and jerome
 zstyle ':prezto:module:syntax-highlighting' highlighters \
   'main' \
   'brackets' \
@@ -177,6 +179,7 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
   'line' \
   'cursor' \
   'root'
+<<<<<<< HEAD
 =======
 # zstyle ':prezto:module:syntax-highlighting' highlighters \
 #   'main' \
@@ -186,6 +189,8 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 #   'cursor' \
 #   'root'
 >>>>>>> antons changes
+=======
+>>>>>>> integrate iterm and highlight and jerome
 
 # Set syntax highlighting styles.
 # zstyle ':prezto:module:syntax-highlighting' styles \
