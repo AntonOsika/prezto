@@ -38,10 +38,7 @@ function prompt_jerome_setup {
 
   # Add hook for calling git-info before each command.
   add-zsh-hook precmd prompt_jerome_precmd
-<<<<<<< HEAD
   add-zsh-hook precmd prompt_jerome_preexec
-=======
->>>>>>> added jeromes prompt (which prob needs fixing)
 
   # Set git-info parameters.
   zstyle ':prezto:module:git:info' verbose 'yes'
