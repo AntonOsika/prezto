@@ -168,10 +168,6 @@ zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
 
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> integrate iterm and highlight and jerome
 zstyle ':prezto:module:syntax-highlighting' highlighters \
   'main' \
   'brackets' \
@@ -179,18 +175,6 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
   'line' \
   'cursor' \
   'root'
-<<<<<<< HEAD
-=======
-# zstyle ':prezto:module:syntax-highlighting' highlighters \
-#   'main' \
-#   'brackets' \
-#   'pattern' \
-#   'line' \
-#   'cursor' \
-#   'root'
->>>>>>> antons changes
-=======
->>>>>>> integrate iterm and highlight and jerome
 
 # Set syntax highlighting styles.
 # zstyle ':prezto:module:syntax-highlighting' styles \
