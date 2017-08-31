@@ -9,10 +9,12 @@
 # Load manually installed pyenv into the shell session.
 if [[ -s "$HOME/.pyenv/bin/pyenv" ]]; then
   path=("$HOME/.pyenv/bin" $path)
+  export PYENV_ROOT=$(pyenv root)
   eval "$(pyenv init -)"
 
 # Load package manager installed pyenv into the shell session.
 elif (( $+commands[pyenv] )); then
+  export PYENV_ROOT=$(pyenv root)
   eval "$(pyenv init -)"
 
 # Prepend PEP 370 per user site packages directory, which defaults to
@@ -106,9 +108,14 @@ if (( $+VIRTUALENVWRAPPER_VIRTUALENV || $+commands[virtualenv] )) && \
       ${(@Ov)commands[(I)virtualenvwrapper(_lazy|).sh]}
       /usr/share/virtualenvwrapper/virtualenvwrapper(_lazy|).sh(OnN)
     )
-    source "${virtenv_sources[1]}"
+    if (( $#virtenv_sources )); then
+      source "${virtenv_sources[1]}"
+    fi
+
     unset virtenv_sources
   fi
+
+  unset pyenv_plugins
 fi
 
 # Load PIP completion.
