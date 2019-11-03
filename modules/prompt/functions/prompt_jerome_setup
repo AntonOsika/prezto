@@ -1,0 +1,67 @@
+# Anton Osika added the following from sindresorhus/pure prompt
+function prompt_pure_set_title() {
+	# emacs terminal does not support settings the title
+	(( ${+EMACS} )) && return
+
+	# tell the terminal we are setting the title
+	print -n '\e]0;'
+	# show hostname if connected through ssh
+	[[ -n $SSH_CONNECTION ]] && print -Pn '(%m) '
+	case $1 in
+		expand-prompt)
+			print -Pn $2;;
+		ignore-escape)
+			print -rn $2;;
+	esac
+	# end set title
+	print -n '\a'
+}
+
+function prompt_jerome_preexec() {
+	# shows the current dir and executed command in the title while a process is active
+	prompt_pure_set_title 'ignore-escape' "$PWD:t: $2"
+}
+
+function prompt_jerome_precmd {
+  git-info
+  prompt_pure_set_title 'expand-prompt' '%~'
+
+ # Check for activated virtualenv
+  if (( $+functions[python-info] )); then
+    python-info
+  fi
+}
+
+# From jerome settings:
+function prompt_jerome_setup {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+  prompt_opts=(cr percent subst)
+
+  # Load required functions.
+  autoload -Uz add-zsh-hook
+
+  # Add hook for calling git-info before each command.
+  add-zsh-hook precmd prompt_jerome_precmd
+  add-zsh-hook precmd prompt_jerome_preexec
+
+
+  # Set git-info parameters.
+  zstyle ':prezto:module:git:info' verbose 'yes'
+  zstyle ':prezto:module:git:info:branch' format '%F{green}%b%f'
+  zstyle ':prezto:module:git:info:clean' format ' %F{green}✔%f'
+  zstyle ':prezto:module:git:info:dirty' format ' %F{red}✗%f'
+  zstyle ':prezto:module:git:info:keys' format \
+    'prompt' ' %F{green}(%f$(coalesce "%b" "%p" "%c")${git_info[rprompt]}%s%F{green})%f' \
+    'rprompt' '%C%D'
+
+ # Set virtualenv parameters, %v - virtualenv name.
+  zstyle ':prezto:module:python:info:virtualenv' format '(%v)'
+
+
+  # Define prompts.
+  PROMPT='$python_info[virtualenv] %~${(e)git_info[prompt]}$ '
+  RPROMPT=''
+}
+
+prompt_jerome_setup "$@"
